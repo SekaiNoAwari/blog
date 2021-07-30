@@ -49,6 +49,12 @@ public class HomeController {
         return new Result(true, MessageConstant.OK, "获取标签信息成功", tagService.getTagCount());
     }
 
+    @GetMapping("/getTopBlogs")
+    public Result getTopCount() {
+        return new Result(true, MessageConstant.OK, "获取置顶博客成功", blogService.getTopBlogs());
+    }
+
+
     @GetMapping("/latestList")
     public Result getRecommendList() {
         return new Result(true, MessageConstant.OK, "获取最新推荐信息成功", blogService.getLatestList());

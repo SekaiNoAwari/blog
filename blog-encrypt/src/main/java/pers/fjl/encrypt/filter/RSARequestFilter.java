@@ -87,10 +87,10 @@ public class RSARequestFilter extends ZuulFilter {
             requestData = StreamUtils.copyToString(inputStream, Charsets.UTF_8);
             String s = URLDecoder.decode(requestData, "UTF-8");
             String s2 = s.replace(' ', '+');
-            if (requestData != null && s2 != null) {
+            //if (requestData != null && s2 != null) {
 //                System.out.println("加密后" + requestData);
 //                System.out.println("替换后" + s2);
-            }
+            //}
             //对加密后的数据进行解密
             if (!Strings.isNullOrEmpty(s2)) {
                 try {

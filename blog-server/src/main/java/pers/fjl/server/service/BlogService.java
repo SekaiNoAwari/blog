@@ -48,6 +48,12 @@ public interface BlogService extends IService<Blog> {
     BlogVo getOneBlog(Long blog_id);
 
     /**
+     * 获取置顶博客列表
+     * @return list
+     */
+    List<BlogVo> getTopBlogs();
+
+    /**
      * 按照时间降序获取最新推荐的博客列表
      * @return list
      */

@@ -19,6 +19,7 @@ import pers.fjl.common.vo.AddBlogVo;
 import pers.fjl.common.vo.BlogVo;
 import pers.fjl.server.dao.BlogDao;
 import pers.fjl.server.dao.ThumbsUpDao;
+import pers.fjl.server.dao.TopDao;
 import pers.fjl.server.service.BlogService;
 import pers.fjl.server.service.BlogTagService;
 import pers.fjl.server.service.UserService;
@@ -42,6 +43,8 @@ import java.util.Random;
 public class BlogServiceImpl extends ServiceImpl<BlogDao, Blog> implements BlogService {
     @Resource
     private BlogDao blogDao;
+    @Resource
+    private TopDao topDao;
     @Resource
     private BlogTagService blogTagService;
     @Resource
@@ -133,6 +136,14 @@ public class BlogServiceImpl extends ServiceImpl<BlogDao, Blog> implements BlogS
                 .last("limit 0,7")
                 .orderByDesc("create_time");
         return blogDao.selectList(wrapper);
+    }
+
+    @Cacheable(value = {"BlogPage"}, key = "#root.methodName")
+    public List<BlogVo> getTopBlogs() {
+        return topDao.getTopBlogs();
+        /*QueryWrapper<BlogVo> wrapper = new QueryWrapper<>();
+        wrapper.ge("is_top", 1);
+        return topDao.selectList(wrapper);*/
     }
 
     @Cacheable(value = {"BlogPage"}, key = "#root.methodName+'['+#queryPageBean.typeId+']'")

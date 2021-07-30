@@ -126,4 +126,10 @@ public class Blog extends Model<Blog> {
      */
     private String description;
 
+    /**
+     * 是否置顶
+     */
+    @TableField("is_top")
+    private int isTop;
+
 }

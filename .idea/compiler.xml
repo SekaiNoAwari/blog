@@ -2,17 +2,18 @@
 <project version="4">
   <component name="CompilerConfiguration">
     <annotationProcessing>
+      <profile default="true" name="Default" enabled="true" />
       <profile name="Maven default annotation processors profile" enabled="true">
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="blog-extension" />
-        <module name="blog-server" />
-        <module name="blog-article-crawler" />
+        <module name="blog-eureka" />
         <module name="blog-common" />
+        <module name="blog-article-crawler" />
+        <module name="blog-server" />
+        <module name="blog-extension" />
         <module name="blog-ai" />
         <module name="blog-encrypt" />
-        <module name="blog-eureka" />
       </profile>
     </annotationProcessing>
   </component>
