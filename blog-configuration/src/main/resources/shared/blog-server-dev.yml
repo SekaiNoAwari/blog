@@ -1,20 +1,23 @@
 server:
-  port: 9003
+  port: 9002
 spring:
   profiles:
     active: dev
   application:
-    name: blog-extension #指定服务名
-  data:
-    elasticsearch:
-      cluster-name: elasticsearch
-      cluster-nodes: 119.23.62.26:9300
+    name: blog-server #指定服务名
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://127.0.0.1:3306/blog?useUnicode=true&characterEncoding=utf-8&serverTimezone=GMT
+    username: root
+    password: liushuai354
+  redis:
+    host: 127.0.0.1
 
 # Mybatis-Plus 配置
 mybatis-plus:
   mapper-locations: classpath:/mapper/*.xml
   #实体扫描，多个package用逗号或者分号分隔
-  typeAliasesPackage: pers.fjl.extension.po
+  typeAliasesPackage: pers.fjl.common.po
   global-config:
     #    db-config:
     #      table-prefix: t_
@@ -31,3 +34,21 @@ mybatis-plus:
     log-impl: org.apache.ibatis.logging.stdout.StdOutImpl #打印sql语句,调试用
 #  configuration:
 #    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+
+logging:
+  level:
+    root: warn
+    pers.fjl.server: debug
+  file:
+    path: log/blog-prod.log
+
+ribbon:
+  ReadTimeout: 600000000
+  ConnectTimeout: 600000000
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://127.0.0.1:8686/eureka/
+  instance:
+    prefer-ip-address: true
